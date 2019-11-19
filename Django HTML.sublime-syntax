@@ -1,0 +1,41 @@
+%YAML 1.2
+---
+# http://www.sublimetext.com/docs/3/syntax.html
+name: Django HTML
+file_extensions: [html, djt, html.djt, dj.html, djhtml]
+scope: text.django
+
+contexts:
+  main:
+    - match: ""
+      push: "Packages/HTML/HTML.sublime-syntax"
+      with_prototype:
+
+        - match: "{#(?=.*#})"
+          scope: punctuation.definition.comment
+          push: commentline
+
+        - match: "{%\\s*comment\\s*%}"
+          scope: punctuation.definition.comment
+          push: commentblock
+
+        - match: "{{(?=.*}})"
+          push: expr
+
+  expr:
+    - match: "}}"
+      pop: true
+    - match: \b(block.super)\b
+      scope: keyword.control
+
+  commentline:
+    - meta_scope: comment.line
+    - match: "#}"
+      scope: punctuation.definition.comment
+      pop: true
+
+  commentblock:
+    - meta_scope: comment.block
+    - match: "{%\\s*endcomment\\s*%}"
+      scope: punctuation.definition.comment
+      pop: true

@@ -1,0 +1,14 @@
+{# SYNTAX TEST "Packages/Django Syntax/Django HTML.sublime-syntax" #}
+
+<div class="cool {# awesome #}">{#hm#} hi {##}</div>
+{# ^ meta.tag.block.any.html #}
+              {# ^^ punctuation.definition.comment #}
+              {# ^^^^^^^^^^^^^ comment.line #}
+                             {# ^^^^^^ comment.line #}
+                                       {# ^^^^ comment.line #}
+
+<div>{% comment %}
+{# <--- meta.tag.block.any.html #}
+<div>{% endcomment %}</div>
+{#                   ^^^^^^ meta.tag.block.any.html #}
+{# ^^^^^^^^^^^^^^^^^^ comment.block #}
