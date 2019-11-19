@@ -1,0 +1,32 @@
+name: Sublime Syntax Test
+
+on: [push]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v1
+      with:
+        fetch-depth: 1
+        path: Data/Packages/Django Syntax
+    
+    - name: Download Default Packages
+      run: |
+        cd "$GITHUB_WORKSPACE/../../../"
+        curl -L https://github.com/sublimehq/Packages/archive/master.tar.gz | tar xzf - --strip-components=1 -C Data/Packages/
+
+    - name: Download and install the Sublime Text 3 syntax checker
+      run: |
+        cd "$GITHUB_WORKSPACE/../../../"
+        sudo apt-get -y install libgl1-mesa-glx libglu1-mesa tree
+        curl https://download.sublimetext.com/st_syntax_tests_build_4052_x64.tar.bz2 | tar xjf -
+        mv ./st_syntax_tests/syntax_tests syntax_tests
+        rm -r st_syntax_tests
+
+    - name: Run the tests
+      run: |
+        cd "$GITHUB_WORKSPACE/../../../"
+        ./syntax_tests
