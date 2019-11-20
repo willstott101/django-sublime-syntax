@@ -12,30 +12,88 @@ contexts:
       with_prototype:
 
         - match: "{#(?=.*#})"
-          scope: punctuation.definition.comment
+          scope: punctuation.definition.comment.django
           push: commentline
 
         - match: "{%\\s*comment\\s*%}"
-          scope: punctuation.definition.comment
+          scope: punctuation.definition.comment.django
           push: commentblock
+
+        - match: "{%\\s*(?=.*%})"
+          push: tagname
+          with_prototype:
+          - match: "(?=%})"
+            pop: true
 
         - match: "{{(?=.*}})"
           push: expr
+          with_prototype:
+          - match: "(?=}})"
+            pop: true
+
+  tagname:
+    - match: "((?=with\\b)|\\w+\\b)"
+      scope: meta.function-call.django variable.function.django
+      push: value
+      with_prototype:
+        - match: "with\\b"
+          scope: meta.function-call.django variable.function.django
+          push: withclause
+        - match: "(?=%})"
+          pop: true
+
+  withclause:
+    - match: "\\w+\\b"
+      scope: variable.parameter.django
+      push: value
+      with_prototype:
+        # TODO: Equals the "with" sign should have a scope.
+        # - match: "\\="
+        #   scope: meta.operator.assignment.django
+        - match: "(?=%})"
+          pop: true
+    - match: "(?=%})"
+      pop: true
+
+  value:
+    - match: "'"
+      scope: punctuation.definition.string.begin.django
+      push: singlestring
+    - match: '"'
+      scope: punctuation.definition.string.begin.django
+      push: doublestring
+    - match: "\\w+"
+      scope: meta.generic-name.django
+
+  singlestring:
+    - meta_scope: string.quoted.single.django
+    - match: \'
+      scope: punctuation.definition.string.end.django
+      pop: true
+
+  doublestring:
+    - meta_scope: string.quoted.double.django
+    - match: \"
+      scope: punctuation.definition.string.end.django
+      pop: true
 
   expr:
-    - match: "}}"
-      pop: true
-    - match: \b(block.super)\b
-      scope: keyword.control
+    - match: "'"
+      scope: punctuation.definition.string.begin.django
+      push: singlestring
+    - match: '"'
+      scope: punctuation.definition.string.begin.django
+    - match: "\\w+"
+      scope: meta.generic-name.django
 
   commentline:
-    - meta_scope: comment.line
+    - meta_scope: comment.line.django
     - match: "#}"
-      scope: punctuation.definition.comment
+      scope: punctuation.definition.comment.django
       pop: true
 
   commentblock:
-    - meta_scope: comment.block
+    - meta_scope: comment.block.django
     - match: "{%\\s*endcomment\\s*%}"
-      scope: punctuation.definition.comment
+      scope: punctuation.definition.comment.django
       pop: true
