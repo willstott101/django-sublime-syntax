@@ -1,14 +1,41 @@
 {# SYNTAX TEST "Packages/Django Syntax/Django HTML.sublime-syntax" #}
 
 <div class="cool {# awesome #}">{#hm#} hi {##}</div>
+         {# ^^^^^ string.quoted.double.html #}
+              {# ^^^^^^^^^^^^^ -string.quoted.double.html #}
 {# ^ meta.tag.block.any.html #}
               {# ^^ punctuation.definition.comment #}
               {# ^^^^^^^^^^^^^ comment.line #}
                              {# ^^^^^^ comment.line #}
                                        {# ^^^^ comment.line #}
 
+
 <div>{% comment %}
 {# <--- meta.tag.block.any.html #}
 <div>{% endcomment %}</div>
 {#                   ^^^^^^ meta.tag.block.any.html #}
 {# ^^^^^^^^^^^^^^^^^^ comment.block #}
+{# ^^^^^^^^^^^^^^^^^^ -text.html.basic #}
+
+
+<a href="{% static 'app/file.csv' %}">numbas</a>
+      {# ^^^^^^^^^^^^^^^^^^^^^^^^^^^ -string.quoted.double.html #}
+      {# ^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.function-call.django #}
+
+   {% include 'other.djt' with x=y %}
+{# ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.function-call.django #}
+           {# ^^^^^^^^^^^ string.quoted.single.django #}
+   {% include tpl_name with x=y %}
+{# ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.function-call.django #}
+
+
+<div class="cool {{ cls_name }}">boop</div>
+        {# ^^^^^^ string.quoted.double.html #}
+              {# ^^^^^^ -string.quoted.double.html #}
+              {# ^^^^^^^^^^^^^^ meta.block #}
+              {# ^^ punctuation.section.block.begin #}
+                          {# ^^ punctuation.section.block.end #}
+
+
+<div class="hi {{ "mr" }}">boop</div>
+               {# ^^^^ string.quoted.double.django #}

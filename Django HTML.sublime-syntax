@@ -13,31 +13,40 @@ contexts:
 
         - match: "{#(?=.*#})"
           scope: punctuation.definition.comment.django
-          push: commentline
+          push:
+            - clear_scopes: true
+            - meta_scope: text.django comment.line.django
+            - include: commentline
 
         - match: "{%\\s*comment\\s*%}"
           scope: punctuation.definition.comment.django
-          push: commentblock
+          push:
+            - clear_scopes: true
+            - meta_scope: text.django comment.block.django
+            - include: commentblock
 
         - match: "{%\\s*(?=.*%})"
-          push: tagname
-          with_prototype:
-          - match: "(?=%})"
-            pop: true
+          push:
+            - clear_scopes: true
+            - meta_scope: text.django meta.function-call.django
+            - include: tagname
 
         - match: "{{(?=.*}})"
-          push: expr
-          with_prototype:
-          - match: "(?=}})"
-            pop: true
+          scope: punctuation.section.block.begin
+          push:
+            - clear_scopes: true
+            - meta_scope: text.django meta.block
+            - include: expr
 
   tagname:
+    - match: "%}"
+      pop: true
     - match: "((?=with\\b)|\\w+\\b)"
-      scope: meta.function-call.django variable.function.django
-      push: value
+      scope: variable.function.django
+      push: tagexpr
       with_prototype:
         - match: "with\\b"
-          scope: meta.function-call.django variable.function.django
+          scope: variable.function.django
           push: withclause
         - match: "(?=%})"
           pop: true
@@ -45,7 +54,7 @@ contexts:
   withclause:
     - match: "\\w+\\b"
       scope: variable.parameter.django
-      push: value
+      push: tagexpr
       with_prototype:
         # TODO: Equals the "with" sign should have a scope.
         # - match: "\\="
@@ -55,7 +64,7 @@ contexts:
     - match: "(?=%})"
       pop: true
 
-  value:
+  tagexpr:
     - match: "'"
       scope: punctuation.definition.string.begin.django
       push: singlestring
@@ -83,17 +92,19 @@ contexts:
       push: singlestring
     - match: '"'
       scope: punctuation.definition.string.begin.django
+      push: doublestring
     - match: "\\w+"
       scope: meta.generic-name.django
+    - match: "}}"
+      scope: punctuation.section.block.end
+      pop: true
 
   commentline:
-    - meta_scope: comment.line.django
     - match: "#}"
       scope: punctuation.definition.comment.django
       pop: true
 
   commentblock:
-    - meta_scope: comment.block.django
     - match: "{%\\s*endcomment\\s*%}"
       scope: punctuation.definition.comment.django
       pop: true
