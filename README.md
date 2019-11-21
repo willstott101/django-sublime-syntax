@@ -5,9 +5,9 @@ WIP syntax highglighting of Django templates for Sublime Text
 ### TODO
 - [x] Single-line comments
 - [x] Multi-line comments
-- [ ] Standard tags
+- [X] Basic tags
+- [X] Basic expressions
 - [ ] Filters
-- [ ] Expression highlighting
 - [ ] ...this list
 
 ### Contributing
