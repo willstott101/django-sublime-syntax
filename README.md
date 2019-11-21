@@ -1,6 +1,8 @@
 # Django Syntax
 
-WIP syntax highglighting of Django templates for Sublime Text
+Syntax highlighting of Django templates for Sublime Text
+
+Written to overcome some limitations with [Djaneiro's](https://github.com/squ1b3r/Djaneiro) tmLanguage based syntaxes.
 
 ### TODO
 - [x] Single-line comments
