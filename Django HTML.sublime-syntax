@@ -26,6 +26,7 @@ contexts:
             - include: commentblock
 
         - match: "{%\\s*(?=.*%})"
+          scope: punctuation.section.block.begin
           push:
             - clear_scopes: true
             - meta_scope: text.django meta.function-call.django
@@ -40,6 +41,7 @@ contexts:
 
   tagname:
     - match: "%}"
+      scope: punctuation.section.block.end
       pop: true
     - match: "((?=with\\b)|\\w+\\b)"
       scope: variable.function.django
