@@ -27,3 +27,6 @@ jobs:
       run: |
         ln -s $(pwd) ~/.config/sublime-text/Packages/"Django Syntax"
         syntax_tests
+
+    - name: Run build.py check
+      run: python3 build.py check

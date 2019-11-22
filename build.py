@@ -3,7 +3,8 @@
 Re-generates CSS and XML syntax definitions from the HTML one.
 """
 if __name__ == '__main__':
-    import os
+    import os, sys
+    check = sys.argv[1:] == ['check']
 
     ORIGINAL = (
         'HTML',
@@ -35,6 +36,10 @@ if __name__ == '__main__':
         sv = replace(sv, '[{}]', orig_ext, extensions)
         sv = replace(sv, 'Packages/{0}/{0}.sublime-syntax', orig_name, variation)
         n = fp(variation)
-        with open(n, 'w') as f:
-            f.write(sv)
-        print('Saved:', n)
+        if check:
+            assert open(n, 'r').read() == sv, "build.py detected difference between HTML and {} sublime-syntax files".format(variation)
+            print('Checked:', n)
+        else:
+            with open(n, 'w') as f:
+                f.write(sv)
+            print('Saved:', n)
