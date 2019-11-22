@@ -1,8 +1,6 @@
 # Django Syntax
 
-Syntax highlighting of Django templates for Sublime Text
-
-Written to overcome some limitations with [Djaneiro's](https://github.com/squ1b3r/Djaneiro) tmLanguage based syntaxes.
+Syntax highlighting of Django templates for Sublime Text using the `.sublime-syntax` format.
 
 ![Django Syntax](https://user-images.githubusercontent.com/335152/69388951-75eee280-0cc2-11ea-909f-834bc242af08.png)
 
