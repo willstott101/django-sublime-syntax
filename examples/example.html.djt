@@ -1,0 +1,17 @@
+
+{% extends 'mrt/pages/semantic.html' %}
+{% load static %}
+
+{% block head %}
+{{ block.super }}
+<title>{{ my_page_title|title }}</title>
+<link rel="stylesheet" type="text/css" href="{% static 'lib/cool/ok.css' %}" />
+{% endblock %}
+
+{% block body %}
+    <h1>{% trans "Dates!" %}</h1>
+    {% for date in dates %}
+        <p>{{ date|date:"D d M Y" }}</p>
+    {% endfor %}
+{% endblock %}
+

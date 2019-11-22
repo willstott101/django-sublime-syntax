@@ -1,13 +1,16 @@
 {# SYNTAX TEST "Packages/Django Syntax/Django HTML.sublime-syntax" #}
 
 <div class="cool {# awesome #}">{#hm#} hi {##}</div>
+{# ^ meta.tag.block.any.html #}
          {# ^^^^^ string.quoted.double.html #}
               {# ^^^^^^^^^^^^^ -string.quoted.double.html #}
-{# ^ meta.tag.block.any.html #}
-              {# ^^ punctuation.definition.comment #}
               {# ^^^^^^^^^^^^^ comment.line #}
-                             {# ^^^^^^ comment.line #}
-                                       {# ^^^^ comment.line #}
+              {# ^^ punctuation.definition.comment #}
+
+
+<div>{#hm#} hi {##}</div>
+  {# ^^^^^^ comment.line #}
+            {# ^^^^ comment.line #}
 
 
 <div>{% comment %}
@@ -23,12 +26,18 @@
       {# ^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.function-call.django #}
 
    {% include 'other.djt' with x=y %}
+   {# ^^^^^^^ variable.function.tag.django #}
 {# ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.function-call.django #}
            {# ^^^^^^^^^^^ string.quoted.single.django #}
    {% include tpl_name with x=y %}
+                          {# ^ keyword.operator.assignment.django #}
 {# ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.function-call.django #}
 {# ^^ punctuation.section.block.begin #}
                              {# ^^ punctuation.section.block.end #}
+
+{% for date in dates %}
+         {# ^^ keyword.control.flow.for.in.django #}
+{% endfor %}
 
 
 <div class="cool {{ cls_name }}">boop</div>
@@ -37,7 +46,12 @@
               {# ^^^^^^^^^^^^^^ meta.block #}
               {# ^^ punctuation.section.block.begin #}
                           {# ^^ punctuation.section.block.end #}
-
-
 <div class="hi {{ "mr" }}">boop</div>
                {# ^^^^ string.quoted.double.django #}
+
+<span>{{ current_time|date:"D d M Y" }}</span>
+               {# ^^^^ -variable.function.filter.django #}
+                   {# ^^^^ variable.function.filter.django #}
+<span>{{ current_time|date:"D d M Y"|title }}</span>
+                       {# ^^^^^^^^^^^ -variable.function.filter.django #}
+                                  {# ^^^^ variable.function.filter.django #}
