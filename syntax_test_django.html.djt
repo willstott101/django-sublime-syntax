@@ -35,8 +35,8 @@
 {# ^^ punctuation.section.block.begin #}
                              {# ^^ punctuation.section.block.end #}
 
-{% for date in dates %}
-         {# ^^ keyword.control.flow.for.in.django #}
+<!--{% for date in dates %}-->
+             {# ^^ keyword.control.flow.for.in.django #}
 {% endfor %}
 
 
