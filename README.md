@@ -5,7 +5,7 @@ Syntax highlighting of Django templates for Sublime Text using the `.sublime-syn
 ![Django Syntax](https://user-images.githubusercontent.com/335152/70323213-27922580-1824-11ea-97db-d6bea285e9f8.png)
 
 ### Installing
-[This package is pending acceptance onto packagecontrol.io](https://github.com/wbond/package_control_channel/pull/7766)
+This package is pending both [acceptance onto packagecontrol.io](https://github.com/wbond/package_control_channel/pull/7766) and [merging into Djaneiro](https://github.com/squ1b3r/Djaneiro/pull/123).
 
 In the meantime you can install as you would for development.
 
