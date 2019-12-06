@@ -4,7 +4,11 @@
 
 {% block head %}
 {{ block.super }}
-<title>{{ my_page_title|title }}</title>
+{# Write title to page but comment from the html #}
+<!-- <title>{{ my_page_title|title }}</title> -->
+{% comment %}
+Why would you ever do that?
+{% endcomment %}
 <link rel="stylesheet" type="text/css" href="{% static 'lib/cool/ok.css' %}" />
 {% endblock %}
 
