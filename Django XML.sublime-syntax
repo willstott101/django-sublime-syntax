@@ -18,7 +18,7 @@ contexts:
             - meta_scope: text.django comment.line.django
             - include: commentline
 
-        - match: "{%\\s*comment\\s*%}"
+        - match: "{%\\s*comment\\s*(\"[^\"]*\"\\s*)?%}"
           scope: punctuation.definition.comment.django
           push:
             - clear_scopes: true
