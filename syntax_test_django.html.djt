@@ -20,6 +20,11 @@
 {# ^^^^^^^^^^^^^^^^^^ comment.block #}
 {# ^^^^^^^^^^^^^^^^^^ -text.html.basic #}
 
+   {% comment ""%}{% endcomment %}
+   {# ^^^^^^^^^^^^^^^^^^^^^^^^^^^^ comment.block #}
+   {% comment "note"  %}{% endcomment %}
+   {# ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ comment.block #}
+
 
 <a href="{% static 'app/file.csv' %}">numbas</a>
       {# ^^^^^^^^^^^^^^^^^^^^^^^^^^^ -string.quoted.double.html #}
