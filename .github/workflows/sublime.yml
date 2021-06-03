@@ -14,7 +14,7 @@ jobs:
 
     - uses: SublimeText/syntax-test-action@v2
       with:
-        build: latest
+        build: 4016
         default_packages: st3
         package_name: Django Syntax
 
