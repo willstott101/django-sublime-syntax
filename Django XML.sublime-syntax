@@ -106,7 +106,11 @@ contexts:
 
   exprfilter:
     - meta_content_scope: variable.function.filter.django
-    - match: "[ :]"
+    # End the filter expression when we encounter anything that can't be part of the filter name,
+    # typically a space, a colon (e.g. {{var|filter:arg}}), or the closing }}.
+    # We use a look-ahead so that we don't swallow the curly bracket, as if we do then the `expr`
+    # context won't be able to match "}}".
+    - match: "(?=[^\\w])"
       pop: true
 
   commentline:
