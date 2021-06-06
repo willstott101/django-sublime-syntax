@@ -61,3 +61,8 @@
 <span>{{ current_time|date:"D d M Y"|title }}</span>
                        {# ^^^^^^^^^^^ -variable.function.filter.django #}
                                   {# ^^^^ variable.function.filter.django #}
+
+<span>{{current_time|date}}</span>
+                  {# ^^^^ variable.function.filter.django #}
+   {# ^^ punctuation.section.block.begin #}
+                      {# ^^ punctuation.section.block.end #}
