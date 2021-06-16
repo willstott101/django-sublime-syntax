@@ -14,4 +14,4 @@ To install for development clone this repo (or symlink it) to `~/.config/sublime
 
 Once symlinked, when editing the syntax definition any loaded files using that definition should update automatically.
 
-Edit only `Django HTML.sublime-syntax` and use `build.py` to generate the `CSS` and `XML` variants.
+Edit only `Django HTML.sublime-syntax` and then run `build.py` to generate the `CSS` and `XML` variants before committing changes.
