@@ -10,7 +10,12 @@ You can install from [Package Control](https://packagecontrol.io/packages/Django
 
 ### Development
 
-To install for development clone this repo (or symlink it) to `~/.config/sublime-text-3/Packages/Django Syntax` on linux. For other operating systems use `Preferences` -> `Browse Packages` to find the location of the Packages folder.
+To install for development clone this repo (or symlink it) to the `Packages` directory.
+
+You can use `Preferences` -> `Browse Packages` to find the location of the Packages folder.
+
+* `~/.config/sublime-text-3/Packages/Django\ Syntax` on linux
+* `"%USERPROFILE%\AppData\Roaming\Sublime Text\Packages\User"` on windows
 
 Once symlinked, when editing the syntax definition any loaded files using that definition should update automatically.
 

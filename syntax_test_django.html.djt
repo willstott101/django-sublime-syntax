@@ -25,6 +25,12 @@
    {% comment "note"  %}{% endcomment %}
    {# ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ comment.block #}
 
+LOADS OF HARD TO READ TEXT FOR {{ NAME }} VERY IMPORTANT EMAIL
+                               {# ^^^^ -text.html #}
+                               {# ^^^^ meta.generic-name.django #}
+
+                            {# ^^ punctuation.section.block.begin #}
+                                    {# ^^ punctuation.section.block.end #}
 
 <a href="{% static 'app/file.csv' %}">numbas</a>
       {# ^^^^^^^^^^^^^^^^^^^^^^^^^^^ -string.quoted.double.html #}
@@ -34,11 +40,16 @@
    {# ^^^^^^^ variable.function.tag.django #}
 {# ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.function-call.django #}
            {# ^^^^^^^^^^^ string.quoted.single.django #}
-   {% include tpl_name with x=y %}
+   {% include tpl_name with x=y y="x" %}
+                         {# ^ variable.parameter.django #}
                           {# ^ keyword.operator.assignment.django #}
-{# ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.function-call.django #}
+                           {# ^ meta.generic-name.djang #}
+                             {# ^ variable.parameter.django #}
+                              {# ^ keyword.operator.assignment.django #}
+                               {# ^^^ string.quoted.double.django #}
+{# ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.function-call.django #}
 {# ^^ punctuation.section.block.begin #}
-                             {# ^^ punctuation.section.block.end #}
+                                   {# ^^ punctuation.section.block.end #}
 
 <!--{% for date in datesin %}-->
              {# ^^ keyword.control.flow.for.in.django #}

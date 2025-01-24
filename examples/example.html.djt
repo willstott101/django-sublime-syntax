@@ -10,6 +10,8 @@
 Why would you ever do that?
 {% endcomment %}
 <link rel="stylesheet" type="text/css" href="{% static 'lib/cool/ok.css' %}" />
+
+{% include headers_footer with x=y y="x" %}
 {% endblock %}
 
 {% block body %}
@@ -17,5 +19,7 @@ Why would you ever do that?
     {% for date in dates %}
         <p>{{ date|date:"D d M Y" }}</p>
     {% endfor %}
+
+    LOADS OF HARD TO READ TEXT FOR {{ NAME }}: VERY IMPORTANT EMAIL
 {% endblock %}
 
